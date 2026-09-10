@@ -1,0 +1,24 @@
+---
+title: "Projects"
+toc: false
+listing:
+  id: projects
+  contents: projects
+  type: table
+  sort: "date desc"
+  fields: [title, description, categories, date]
+  field-display-names:
+    date: "Updated"
+  categories: true
+  sort-ui: [title, date]
+  filter-ui: [title, description, categories]
+---
+
+Status labels used on project pages:
+
+- **Public** — code, documentation, and outputs are available.
+- **Code only** — the workflow is public; the input data and the results are not, because they belong to a manuscript in preparation or to unpublished lab data.
+- **Planned** — listed so the scope is visible; repository not yet published.
+
+::: {#projects}
+:::

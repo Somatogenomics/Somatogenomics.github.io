@@ -1,0 +1,43 @@
+---
+title: "Forced-heterozygosity pool-seq mapping"
+description: "Bulk-segregant design for mapping a recessive allele when the affected class cannot be sampled: build pools whose genotype at the target is fixed by the cross, then test per-site allele-depth differences."
+date: 2026-06-01
+categories: [method, pool-seq, mapping, Aedes aegypti]
+---
+
+[Code only]{.status-badge .status-code} Method description and analysis code. The locus, candidate genes, and validation results belong to a manuscript in preparation and are not shown here.
+
+<!-- TODO(Somato): confirm that the method description below can be public ahead of the methods note (Paper 4). Nothing locus-specific is included. -->
+
+## The problem
+
+A recessive allele that kills the homozygote before it can be collected cannot be mapped by pooling affected versus unaffected individuals, because there are no affected individuals to pool. Standard bulk-segregant analysis needs both classes.
+
+## The design
+
+Use the cross itself to fix the genotype at the target. Choose parents so that one pool of survivors must carry the allele as heterozygotes and the other pool cannot carry it at all. Both pools are alive and collectable; the allele is present at a known expected frequency in one and at zero in the other. Every marker linked to the target then shows a predictable allele-frequency difference between pools, and the difference decays with recombination distance.
+
+Expected frequencies follow from the segregation model of the cross and are written down before any sequencing. They are the null the data are tested against.
+
+## Analysis
+
+| Step | Implementation |
+|---|---|
+| Variant calling | GATK joint calling of both pools against AaegL5.0 |
+| Site filters | GQ ≥ 90; minimum depth ≥ 10 per pool; biallelic SNPs only |
+| AD parsing | Character import, comma split (see [poolAD](poolad.qmd)) |
+| Per-site tests | Fisher's exact test on the 2×2 allele-depth table; chi-square; binomial test of the carrier pool against its expected frequency |
+| Window summary | Sliding windows of test statistics along each chromosome; peak defined by concordance of the three tests, not by the single best site |
+| Sensitivity | Repeat with alternative depth and GQ cutoffs and window sizes; the peak must survive all of them |
+
+: {.project-meta}
+
+## Assumptions to state and check
+
+- The expected allele frequency in the carrier pool depends on the cross scheme and on equal contribution of individuals to the pool. Unequal contribution widens the variance; the pooling-aware model in poolAD addresses this.
+- Reference-allele mapping bias shifts frequencies toward the reference at all sites. It is the same in both pools, so the *difference* is less affected than either frequency alone, but it should be measured (e.g., at sites far from any peak).
+- Three tests on the same table are not independent lines of evidence. They are reported together to show robustness to the test's distributional assumptions, not to multiply confidence.
+
+## What falsifies a peak
+
+A peak that moves or disappears when depth/GQ cutoffs or window size change, or that is not reproduced in an independent cross, is not accepted. Final confirmation is by targeted genotyping of candidate variants and by CRISPR complementation.

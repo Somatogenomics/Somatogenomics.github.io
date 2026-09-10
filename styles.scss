@@ -1,0 +1,13 @@
+/*-- scss:defaults --*/
+$font-size-root: 16px;
+
+/*-- scss:rules --*/
+.quarto-listing-default .listing-title { font-weight: 600; }
+.status-badge {
+  display: inline-block; padding: 0.1rem 0.5rem; border-radius: 0.25rem;
+  font-size: 0.8rem; font-weight: 600; margin-right: 0.4rem;
+}
+.status-public   { background: #d4edda; color: #155724; }
+.status-code     { background: #fff3cd; color: #856404; }
+.status-planned  { background: #e2e3e5; color: #383d41; }
+table.project-meta td:first-child { font-weight: 600; width: 11rem; }

@@ -1,0 +1,36 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Somatogenomics"
+  description: "Analyses, methods, and tools from Abdulhadi (Somato) Kobiowu — mosquito sex-determination genetics, pool-seq, and quantitative genomics."
+  site-url: https://somatogenomics.github.io
+  repo-url: https://github.com/Somatogenomics/Somatogenomics.github.io
+  repo-actions: [issue]
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: projects.qmd
+        text: Projects
+      - href: tools.qmd
+        text: Tools
+      - href: about.qmd
+        text: About
+    right:
+      - icon: github
+        href: https://github.com/Somatogenomics
+        aria-label: GitHub
+  page-footer:
+    left: "Abdulhadi Kobiowu · Virginia Tech · GBCB"
+    right: "Built with Quarto · deployed with GitHub Pages"
+  search: true
+
+format:
+  html:
+    theme: [flatly, styles.scss]
+    toc: true
+    toc-depth: 3
+    code-copy: true
+    link-external-newwindow: true

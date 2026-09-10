@@ -1,0 +1,23 @@
+---
+title: "About"
+toc: false
+---
+
+I am Abdulhadi (Somato) Kobiowu, a PhD candidate in the Genetics, Bioinformatics, and Computational Biology (GBCB) program at Virginia Tech, working in Zhijian Tu's lab on *Aedes aegypti* sex determination: the M-locus, *Nix*, *myo-sex*, and the genetics of sex-specific development. Before Virginia Tech I completed the European Master's in Animal Breeding and Genetics (Göttingen / NMBU), worked in quantitative genetics at Lohmann Breeders, and did a computational biology internship at GlaxoSmithKline.
+
+## How the project pages are written
+
+Every project page follows the same outline so results can be audited:
+
+1. What question was tested
+2. What data and reference versions were used
+3. What methods and parameters were run
+4. What QC thresholds and exclusions were applied
+5. What the primary outputs are
+6. What alternative explanations remain and what would validate or falsify the result
+
+Reference genome for all *Aedes aegypti* work is AaegL5.0 unless a page states otherwise.
+
+## Contact
+
+GitHub: [Somatogenomics](https://github.com/Somatogenomics)

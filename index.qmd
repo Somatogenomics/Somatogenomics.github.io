@@ -1,0 +1,36 @@
+---
+title: "Somatogenomics"
+subtitle: "Computational genomics of mosquito sex determination, pool-seq mapping, and quantitative genetics"
+toc: false
+---
+
+This site collects analyses, methods, and software I have built during my PhD and earlier training. Each project page states the question, the data and reference versions, the methods and parameters, the QC decisions, and a link to the code repository. Everything listed here is open; unpublished data and results from manuscripts in preparation are not included.
+
+## Featured
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+### [VennCompare](projects/venn-compare.qmd)
+Browser-only set comparison with exact overlap statistics (Fisher's exact, hypergeometric via SuperExactTest, BH-FDR), UpSet and Venn plots, and reproducible R code export. Runs on Quarto + Shinylive; no data leaves the browser.
+[Open the app](https://somatogenomics.github.io/venn-compare/) · [Source](https://github.com/Somatogenomics/venn-compare)
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### [poolAD](projects/poolad.qmd)
+R package for parsing allele-depth (AD) fields from pooled-sequencing VCF/GATK tables without silent type coercion, with pooling-aware allele-frequency statistics and a Snakemake command-line entry point.
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### [Forced-heterozygosity pool-seq mapping](projects/forced-heterozygosity.qmd)
+A bulk-segregant design and analysis workflow for mapping recessive alleles when the affected class cannot be sampled directly: engineer the cross so the allele must be heterozygous in one pool and absent in the other, then test allele-depth differences per site.
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### [Multi-layer bulk RNA-seq workflow](projects/transgenic-rnaseq.qmd)
+Differential expression (DESeq2, limma, edgeR), transcript usage (IsoformSwitchAnalyzeR + satuRn, DEXSeq), splicing (rMATS), co-expression (WGCNA), and regulatory-network inference (GENIE3) on *Aedes aegypti* AaegL5.0. Code and configuration only; data are not yet public.
+:::
+
+:::
+
+See the full [project list](projects.qmd).

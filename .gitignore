@@ -1,0 +1,6 @@
+/_site/
+/.quarto/
+/_freeze/
+.Rproj.user/
+.Rhistory
+.DS_Store

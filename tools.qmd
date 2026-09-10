@@ -1,0 +1,13 @@
+---
+title: "Tools"
+toc: false
+---
+
+Software that can be used directly, independent of any one analysis.
+
+| Tool | What it does | Use it |
+|---|---|---|
+| VennCompare | Compare 2–7 sets in the browser: Venn, UpSet, pairwise similarity heatmap, exact overlap p-values with BH adjustment, set algebra, element search, R code export, session save/load. | [App](https://somatogenomics.github.io/venn-compare/) · [Source](https://github.com/Somatogenomics/venn-compare) |
+| poolAD | R package: parse pool-seq AD fields as character then split (no fread auto-conversion), compute pooling-aware allele-frequency statistics, run from the command line through Snakemake. | [Project page](projects/poolad.qmd) |
+
+: {.striped .hover}

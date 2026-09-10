@@ -1,0 +1,40 @@
+---
+title: "Multi-layer bulk RNA-seq workflow"
+description: "Differential expression, transcript usage, splicing, co-expression, and network inference on Aedes aegypti bulk RNA-seq across multiple genotypes; code and configuration only."
+date: 2026-05-01
+categories: [workflow, RNA-seq, R, Aedes aegypti]
+---
+
+[Code only]{.status-badge .status-code} The workflow is public; the sequencing data and the results are part of unpublished lab work and are not included.
+
+<!-- TODO(Somato): repo URL once the code is pushed; confirm the genotype list below is acceptable to name publicly -->
+
+## Question the workflow answers
+
+Which genes, transcripts, splicing events, and co-expression modules differ between genotypes, and which of those differences are consistent across contrasts that share a causal factor.
+
+## Layers
+
+| Layer | Tools | Output |
+|---|---|---|
+| Gene-level DE | DESeq2, limma-voom, edgeR (run in parallel; consensus reported) | Per-contrast tables with log2FC, shrunken log2FC, adjusted p |
+| Transcript usage | IsoformSwitchAnalyzeR + satuRn; DEXSeq for exon usage | Isoform-fraction changes with switch consequences |
+| Splicing | rMATS (five event types) | PSI differences per event, FDR |
+| Co-expression | WGCNA | Modules, module–trait correlations, hub genes |
+| Regulatory network | GENIE3, 10 random seeds, edge intersection across seeds | Consensus TF–target edges |
+
+: {.project-meta}
+
+## Design and covariates
+
+- Reference: AaegL5.0 with the matching NCBI annotation release; contig names checked against the FASTA before alignment.
+- Batch entered as a covariate in the DE model. Batch-corrected counts (ComBat-seq) were not used for inference because batch and group were partially confounded; the covariate approach is the conservative choice and is stated as such.
+- Contrasts are defined in a single config file; every layer reads the same sample sheet and the same contrast list.
+
+## QC before inference
+
+FastQC/MultiQC, alignment rate, rRNA fraction, strandedness check, gene-body coverage, library complexity, and a PCA on variance-stabilised counts with batch and group labelled. Exclusion criteria are written in the config and applied by the pipeline, not by hand.
+
+## Reproducibility
+
+`renv` lockfile for R, pinned container for aligners, Snakemake driver, and output directories `01_inputs/ … 06_reports/` with a `logs/` tree. Figures and tables are script-generated.

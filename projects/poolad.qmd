@@ -1,0 +1,34 @@
+---
+title: "poolAD"
+description: "R package for parsing pooled-sequencing allele-depth (AD) fields without silent coercion, with pooling-aware allele-frequency statistics and a Snakemake CLI."
+date: 2026-07-01
+categories: [tool, R, pool-seq, variant calling]
+---
+
+[Planned]{.status-badge .status-planned} Repository not yet public — package is scaffolded with 31 unit tests, pkgdown documentation, and a `CITATION.cff`.
+
+<!-- TODO(Somato): replace with the repo URL once pushed -->
+
+## The problem it solves
+
+The `AD` field in VCF/GATK-exported tables is a comma-separated string (`ref,alt`). Fast readers guess column types per file, so the same field arrives as character in one file and numeric in another, and the alternate-allele count is silently lost or shifted. Downstream allele-frequency tests then run on the wrong numbers with no error.
+
+## Approach
+
+- Read AD columns as character explicitly, then split on the comma. Never rely on the reader's type inference for these fields.
+- Return reference and alternate depths as integer columns with a per-site total-depth check (`ref + alt == DP` where DP is available; mismatches are flagged, not dropped).
+- Allele-frequency comparison between pools that accounts for two sources of variance: binomial sampling of reads and the finite number of individuals in the pool. Point estimates alone overstate confidence for small pools.
+- Command-line entry point through a Snakemake workflow so the same parsing and tests run unchanged on the cluster.
+
+## QC defaults carried from prior work
+
+| Parameter | Default | Basis |
+|---|---|---|
+| Genotype quality | GQ ≥ 90 | Standard used across the lab's pool-seq calls |
+| Minimum depth | Site-level, set per dataset | Must be chosen from the depth distribution of the data, not fixed |
+
+: {.project-meta}
+
+## Status
+
+Package structure, tests, and documentation exist; the public release is pending a final review of the example data shipped with the package.

@@ -1,0 +1,35 @@
+---
+title: "VennCompare"
+description: "Browser-only set comparison with exact overlap statistics, UpSet/Venn plots, set algebra, and R code export (Quarto + Shinylive)."
+date: 2026-07-01
+categories: [tool, R, Shinylive, statistics]
+---
+
+[Public]{.status-badge .status-public} [Open the app](https://somatogenomics.github.io/venn-compare/) · [Source](https://github.com/Somatogenomics/venn-compare)
+
+## What it is for
+
+Comparing 2–7 lists of identifiers (genes, transcripts, samples, anything) and asking whether their overlaps are larger than expected by chance. Existing browser tools (Venny, InteractiVenn, jvenn, DeepVenn) draw the diagram but do not test it; VennCompare adds the test and the background universe it depends on.
+
+## Method
+
+| | |
+|---|---|
+| Pairwise overlap | One-sided Fisher's exact test |
+| Multi-way intersections | Exact hypergeometric test (SuperExactTest; Wang, Zhao & Sherman, *Sci Rep* 2015) |
+| Multiple testing | Benjamini–Hochberg FDR across all tested intersections |
+| Universe | User-specified background size; the app warns when the union of the sets is used as the universe, because that inflates significance |
+| Plots | Venn (2–5 sets; ellipse layout for 5), UpSet (any number of sets), bar chart of intersection sizes, pairwise similarity heatmap (Jaccard) |
+| Input | Paste, CSV/TSV, GMT, long format (element, set) |
+| Output | PNG/SVG/PDF figures, tables, session JSON, and the R code that reproduces the analysis |
+
+: {.project-meta}
+
+## Assumptions
+
+- Elements are exchangeable draws from the stated universe. If the sets were built with different detection thresholds (e.g., genes expressed in different tissues), the universe should be the set of elements that *could* have appeared in every set, not all genes in the genome.
+- Identifiers are already harmonised. The app matches strings exactly; no ID conversion is done.
+
+## Implementation
+
+Quarto document with an embedded Shiny app compiled to WebAssembly through the `quarto-ext/shinylive` extension. Rendered by GitHub Actions and served from GitHub Pages. No server, no upload.
