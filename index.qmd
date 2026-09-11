@@ -22,6 +22,12 @@ R package for parsing allele-depth (AD) fields from pooled-sequencing VCF/GATK t
 :::
 
 ::: {.g-col-12 .g-col-md-6}
+### [tauspec](projects/tauspec.qmd)
+R package for tissue and stage expression specificity: tau with TSI, Gini and entropy as cross-checks, explicit flag-and-retain handling of low-expression genes, and one engine behind an R API, CLI and Shiny app. Reproduces an independent genome-wide *Aedes aegypti* tau table to floating-point precision.
+[Source](https://github.com/Somatogenomics/tauspec)
+:::
+
+::: {.g-col-12 .g-col-md-6}
 ### [Forced-heterozygosity pool-seq mapping](projects/forced-heterozygosity.qmd)
 A bulk-segregant design and analysis workflow for mapping recessive alleles when the affected class cannot be sampled directly: engineer the cross so the allele must be heterozygous in one pool and absent in the other, then test allele-depth differences per site.
 :::

@@ -16,7 +16,7 @@ Comparing 2–7 lists of identifiers (genes, transcripts, samples, anything) and
 | | |
 |---|---|
 | Pairwise overlap | One-sided Fisher's exact test |
-| Multi-way intersections | Exact hypergeometric test (SuperExactTest; Wang, Zhao & Sherman, *Sci Rep* 2015) |
+| Multi-way intersections | Exact hypergeometric test (SuperExactTest; Wang, Zhao & Zhang, *Sci Rep* 2015) |
 | Multiple testing | Benjamini–Hochberg FDR across all tested intersections |
 | Universe | User-specified background size; the app warns when the union of the sets is used as the universe, because that inflates significance |
 | Plots | Venn (2–5 sets; ellipse layout for 5), UpSet (any number of sets), bar chart of intersection sizes, pairwise similarity heatmap (Jaccard) |

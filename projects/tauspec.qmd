@@ -1,0 +1,43 @@
+---
+title: "tauspec"
+description: "R package for tissue and stage expression specificity (tau, TSI, Gini, entropy) with flag-and-retain low-expression handling, a config-driven CLI, and a Shiny app; validated against genome-wide Aedes aegypti tau tables."
+date: 2026-09-10
+categories: [tool, R, specificity, RNA-seq, Aedes aegypti]
+---
+
+[Public]{.status-badge .status-public} [Source](https://github.com/Somatogenomics/tauspec) · version 0.3.0 · MIT
+
+## Question
+
+For each gene, how restricted is its expression across a set of contexts — adult tissues, developmental stages, or any other non-overlapping groups of samples?
+
+## Method
+
+| | |
+|---|---|
+| Primary metric | tau = Σ(1 − xᵢ / max x) / (n − 1) (Yanai et al. 2005) |
+| Companion metrics | TSI (max / sum), Gini coefficient, Shannon-entropy specificity (1 − H / log₂ n); all oriented so higher = more specific |
+| Input | Normalised expression (TPM/CPM), genes × samples, plus a sample → context sheet |
+| Replicates | Collapsed to one value per context (mean; median optional) before scoring |
+| Scale | Linear by default; log₂(x + 1) as a sensitivity option |
+| Low expression | Floor (default 1). `flag` mode keeps genes with 0 < max < floor and sets `low_expression_flag`; `drop` mode removes them and reports the count |
+| Undefined | max = 0 gives tau = NaN, labelled `undefined`, never 0 |
+| Bins | tau ≥ 0.85 specific, < 0.30 broad, else intermediate — conventions, configurable |
+| Interfaces | R API, `inst/cli/tauspec-cli.R` (JSON config, structured output directory, resolved config and `sessionInfo()` saved), Shiny app exportable with Shinylive |
+
+: {.project-meta}
+
+Reporting the four metrics side by side shows whether a call depends on one formula. Kryuchkova-Mostacci & Robinson-Rechavi (2017) benchmarked these metrics; tau is the primary score here for that reason.
+
+## Validation
+
+- **Unit tests:** 50 expectations covering closed-form values, edge cases (unexpressed, n < 2, missing, negative input), bin boundaries, both floor modes, replicate collapse and the annotated output schema. `R CMD check` in CI on Linux, macOS and Windows.
+- **Against independent genome-wide tables** (*Aedes aegypti*, 10 adult tissues and 11 developmental stages): recomputing from per-sample TPM reproduces the tissue table to floating-point precision (max |Δtau| 7.8 × 10⁻¹⁶, 100% of 13,971 genes within 10⁻⁶) and the stage table at r = 0.997. The same engine is exact on the tissue table, so the stage residual traces to which replicates were assigned to each stage before collapsing, not to the tau calculation. Bin and low-expression-flag re-derivation agrees on 100% of 33,823 rows.
+
+The reference tables and TPM inputs are not redistributed; the validation scripts document the exact sample → context mapping.
+
+## Assumptions and limits
+
+- Tau treats contexts as unrelated: brain and ovary are two columns, nothing more. Read tau with `max_context`.
+- Tau values from different context sets (e.g. tissues vs finer cell types) are not on the same scale; the fixed 0.85 cut does not transfer between resolutions. Compare ranks, not bins, across resolutions.
+- High tau on a gene below the floor is mostly noise; it is retained and flagged, not trusted.
