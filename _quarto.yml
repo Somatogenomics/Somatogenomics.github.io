@@ -3,10 +3,11 @@ project:
   output-dir: _site
   resources:
     - robots.txt
+    - googlec8b108be8b59911e.html
 
 website:
   title: "Somatogenomics"
-  description: "Analyses, methods, and tools from Abdulhadi (Somato) Kobiowu — mosquito sex-determination genetics, pool-seq, and quantitative genomics."
+  description: "Analyses, methods, and tools from Abdulhadi Kobiowu — mosquito sex-determination genetics, pool-seq, and quantitative genomics."
   site-url: https://somatogenomics.github.io
   repo-url: https://github.com/Somatogenomics/Somatogenomics.github.io
   repo-actions: [issue]
