@@ -1,22 +1,52 @@
 ---
 title: "About"
-toc: false
 ---
 
-I am Abdulhadi (Somato) Kobiowu, a PhD candidate in the Genetics, Bioinformatics, and Computational Biology (GBCB) program at Virginia Tech, working in Zhijian Tu's lab on *Aedes aegypti* sex determination: the M-locus, *Nix*, *myo-sex*, and the genetics of sex-specific development. Before Virginia Tech I completed the European Master's in Animal Breeding and Genetics (Göttingen / NMBU), worked in quantitative genetics at Lohmann Breeders, and did a computational biology internship at GlaxoSmithKline.
+I'm Abdulhadi Kobiowu, a geneticist and PhD candidate in the Genetics, Bioinformatics, and Computational Biology (GBCB) program at Virginia Tech, working in Prof. Zhijian (Jake) Tu's lab. I study how genes decide sex in the yellow fever mosquito, *Aedes aegypti*, and how that knowledge can be used to control the mosquitoes that spread dengue, Zika, chikungunya, and yellow fever.
 
-## How the project pages are written
+## What I work on
 
-Every project page follows the same outline so results can be audited:
+Only female mosquitoes bite and transmit disease, so the genetics of sex is a practical problem as well as a biological one. In *Aedes aegypti*, sex is set by the M-locus, a small male-determining region on chromosome 1 that carries *Nix* and *myo-sex*, the latter which is responsible for flight in males. My dissertation follows a specific observation: some mosquito lines carry naturally occurring recessive lethal alleles linked to the female-determining chromosome, and these distort the sex ratio of their offspring. I want to know where those alleles are, what genes they disrupt, and what they reveal about how sex chromosomes evolve.
+
+Answering that takes both computation and bench work. I map candidate regions with pooled and individual whole-genome sequencing. I then test the candidates directly by designing guide RNAs for microinjection in mosquito embryos with CRISPR-Cas9, setting up crosses, and genotyping the offspring. Alongside the mapping, I study how the M-locus and gene networks (systems approach),  gene expression in bulk and single-nucleus RNA-seq data: which genes change when *Nix* is knocked out or the M-locus is duplicated, and which genes are specific to one sex or one cell type.
+
+## How I got here
+
+I started in animal science in Nigeria, at Obafemi Awolowo University, working with breeder poultry and studying egg production in FUNAAB-Alpha chickens. I then trained in genomics through a summer program in South Korea, and in quantitative genetics through the Erasmus Mundus European Master in Animal Breeding and Genetics at the University of Göttingen, Germany, and Norwegian University of Life Sciences (NMBU), Norway. That period gave me two sets of skills I still use together:
+
+- **Selection and inheritance:** breeding-program simulation, genomic prediction, and genetic-parameter estimation, including in commercial layer lines at Lohmann Breeders.
+- **Genome editing:** CRISPR-Cas9 work in Atlantic salmon cells for my master's thesis.
+
+Moving to mosquitoes kept the same core question, how genetic variation produces phenotypes, and added vector control as the goal. A computational biology internship at GSK in 2024 took the same tools into drug-target discovery. There I built a single-cell expression-specificity workflow that was later picked up by another team.
+
+## How I work
+
+I treat a computational result as a hypothesis until it has been checked, either by an independent line of evidence or by an experiment. That is why every project page on this site follows the same outline:
 
 1. What question was tested
 2. What data and reference versions were used
 3. What methods and parameters were run
 4. What QC thresholds and exclusions were applied
 5. What the primary outputs are
-6. What alternative explanations remain and what would validate or falsify the result
+6. What alternative explanations remain, and what would validate or falsify the result
 
-Reference genome for all *Aedes aegypti* work is AaegL5.0 unless a page states otherwise.
+When existing software doesn't fit the data, I write my own and make it reusable:
+
+- **poolAD** handles allele-depth parsing for pooled sequencing.
+- **tauspec** scores tissue and sex specificity.
+- **powerscope** does power and sample-size planning across genomics designs.
+- **VennCompare** compares gene sets in the browser.
+
+I also look after my lab's servers.
+
+The reference genome for all *Aedes aegypti* work here is AaegL5.0 unless a page states otherwise. Unpublished data and manuscripts in preparation are not posted.
+
+## Beyond research
+
+I teach bioinformatics to students who don't yet have access to it. I have organised and taught capacity-building workshops, including one organised by the Nigeria chapter of African Students and Alumni Forum (ASAF) for African students and scientists, and I am Vice President of Bioinformatics at Virginia Tech.  I also judge student science competitions and was a mentee in the Bayer University Mentoring Program.
+
+I'm finishing my PhD and looking for postdoctoral or research-scientist positions in bioinformatics, computational and functional genomics from early 2027.
+
 
 ## Contact
 
